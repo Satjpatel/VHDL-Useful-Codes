@@ -1,0 +1,30 @@
+-- 4 Bit Register using DFF 
+
+library ieee ; 
+use ieee.std_logic_1164.all;   
+use IEEE.std_logic_unsigned.all;        	 
+
+-- Entity 
+entity DataRegister is 
+port (   d : in std_logic_vector ( 3 downto 0 ) ; 
+		clk, reset, enable : in std_logic ; 
+		 q : out std_logic_vector ( 3 downto 0 ) 
+	) ; 
+end entity DataRegister ; 
+	
+-- Architecture 
+architecture fourbitregister of DataRegister is 
+begin my_process : process ( clk, reset, enable ) 
+	begin 
+		if ( reset = '1' ) 
+			then q <= "0000" ; 
+		elsif (clk'event and clk = '1' ) 
+			then if ( enable = '1' ) 
+				then q <= d ; 
+				end if ; 
+		end if ; 
+	end process ; 
+end architecture fourbitregister ; 
+
+		
+		
