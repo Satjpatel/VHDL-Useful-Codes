@@ -1,0 +1,30 @@
+library ieee; 
+use ieee.std_logic_1164.all ; 
+use ieee.numeric_bit_unsigned.all ; 
+ 
+-- Entity 
+entity counter is 
+port( clk, reset, load, en : in std_logic ; 
+		d : in std_logic_vector( 3 downto 0) ; 
+		q : out std_logic_vector( 3 downto 0) 
+	) ; 
+	
+end entity counter ; 
+
+--Architecture 
+architecture counter_arch of counter is 
+begin my_process : process ( clk, Load, reset, en ) 
+	begin 
+		if (reset = '1' ) 
+			then q<= "0000" ; 
+		elsif (clk'event and clk = '1' ) 
+			then if (load = '1' ) 
+				then q <= d ; 
+			elsif (en = '1' ) 
+				then q <= (q + "1") ; 
+				end if ; 
+		end if ; 
+	end process my_process ; 
+end architecture counter_arch ; 
+	
+		
